@@ -76,7 +76,8 @@ class User < ActiveRecord::Base
                   :instant_notification_on_mention,
                   :default_digest, 
                   :default_watch_new_task, :default_watch_new_conversation, :default_watch_new_page,
-                  :people_attributes
+                  :people_attributes,
+                  :nomadesk_password
 
   attr_accessor   :activate, :old_password
 
@@ -271,6 +272,10 @@ class User < ActiveRecord::Base
 
   def users_for_user_map
     @users_for_user_map ||= self.organizations.map{|o| o.users + o.users_in_projects }.flatten.uniq
+  end
+  
+  def nomadesk_email
+    self.email
   end
 
   def keyboard_shortcuts
