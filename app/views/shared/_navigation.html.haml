@@ -25,7 +25,8 @@
           .el= link_to t('.time'), project_time_path(project), :class => 'time ajax'
         .el= link_to t('.pages'), project_pages_path(project), :class => 'pages ajax'
         .el= link_to t('.files'), project_uploads_path(project), :class => 'files ajax'
-        .el= link_to t('.nomadesk_files'), project_synced_files_path(project), :class => 'files ajax'
+        - if current_user.admin?
+          .el= link_to t('.nomadesk_files'), project_synced_files_path(project), :class => 'files ajax'
         - if can?(:update, project)
           .el= link_to t('.settings'), project_settings_path(project), :class => 'settings'
           .contained
@@ -78,7 +79,8 @@
         - if can?(:admin, organization)
           .el= link_to t('organizations.column.admin_users'), organization_memberships_path(organization), :class => 'ajax'
           .el= link_to t('organizations.column.appearance'), appearance_organization_path(organization), :class => ''
-          .el= link_to t('organizations.column.storage_options'), storage_options_organization_path(organization), :class => ''
+          - if current_user.admin?
+            .el= link_to t('organizations.column.storage_options'), storage_options_organization_path(organization), :class => ''
           .el= link_to t('organizations.column.delete'), delete_organization_path(organization), :class => 'ajax'
     - unless Teambox.config.community
       .el= link_to t('.show_all_organizations'), organizations_path, :class => 'more ajax'
