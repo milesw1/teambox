@@ -1,0 +1,6 @@
+- if @folders.any?
+  .upload
+    .icon
+      = image_tag "/famfamfam/arrow_turn_left.png"
+    .file
+      = link_to "Previous folder...", dropbox_path(@folders_without_last.join("/"))

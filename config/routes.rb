@@ -56,6 +56,10 @@ Teambox::Application.routes.draw do
 
     match '/projects/:project_id/invite/:login' => 'invitations#create', :as => :create_project_invitation, :method => :post
 
+    match '/dropbox/_sync' => 'dropbox#sync'
+    match '/dropbox/_authorize' => 'dropbox#authorize', :as => :dropbox_authorize
+    match '/dropbox(*full_path)' => 'dropbox#ls', :as => :dropbox
+
     match '/auth/:provider/callback' => 'auth#callback', :as => :auth_callback
     match '/auth/failure' => 'auth#failure', :as => :auth_failure
     match '/complete_signup' => 'users#complete_signup', :as => :complete_signup

@@ -1,0 +1,27 @@
+.upload{:id => "upload_#{index}", :class => cycle('alternate', '')}
+  - if file.directory?
+    .header
+      .icon= image_tag "/famfamfam/folder.png"
+      .file= link_to file.path.split("/").last, dropbox_path(file.path)
+      .size
+      .author
+      .more
+        [+]
+    
+    .reference{:style => "display:none"}
+      = link_to t('.open'), dropbox_path(file.path)
+      = link_to t('.delete') #, file.delete_url, :method => :delete, :confirm => t('.delete_confirmation')
+  
+  - else
+    .header
+      .icon= file_icon_image(file.path, '16px')
+      .file= link_to file.path.split("/").last #, file.download_url
+      .size= "(#{ number_to_human_size(file.bytes) })"
+      .author
+      .more
+        [+]
+        
+    .reference{:style => "display:none"} 
+      = link_to t('.download') #, file.download_url
+      =# link_to t('.download_compressed') #, file.download_compressed_url
+      = link_to t('.delete') #, file.delete_url, :method => :delete, :confirm => t('.delete_confirmation')

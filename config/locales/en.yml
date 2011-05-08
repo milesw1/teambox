@@ -1330,6 +1330,7 @@ en:
       open_my_tasks: Open all my tasks
       show_all_tasks: View all tasks in my projects...
       organizations: Organizations
+      dropbox: Dropbox folders
       show_all_organizations: "Manage organizations..."
       gantt_and_calendars: Gantts and calendars
       affiliate: Affiliate area

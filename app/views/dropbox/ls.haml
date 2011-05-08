@@ -1,0 +1,11 @@
+%h2 Dropbox files
+
+.uploads
+  = render :partial => 'parent_link'
+  
+  - @files.each_with_index do |file, index|
+    = render :partial => 'file', :locals => { :file => file, :index => index }
+
+  - if @files.empty?
+    %p.synced_files_notice= t('.no_files')
+
