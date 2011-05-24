@@ -21,6 +21,7 @@
           - if comment.task_comment?
             = comment_task_status(comment)
             = comment_task_due_on(comment)
+          = comment_task_is_private(comment)
           - if comment.hours?
             = content_tag(:span, human_hours(comment.hours), :class => :hours)
 

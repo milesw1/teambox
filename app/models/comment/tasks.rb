@@ -19,6 +19,10 @@ class Comment
   def due_on_change?
     due_on != previous_due_on
   end
+  
+  def is_private_change?
+    !previous_is_private.nil? && (previous_is_private != is_private)
+  end
 
   def assigned_transition?
     assigned_id != previous_assigned_id

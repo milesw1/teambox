@@ -145,6 +145,7 @@ class Comment < ActiveRecord::Base
     # Private field inherits from target UNLESS it is set and its being changed by the owner
     can_change_private = self.user_id == target.user_id
     if target.respond_to?(:is_private)
+      self[:previous_is_private] = target.is_private
       self[:is_private] = target.is_private unless can_change_private && @is_private_set
     end
     true

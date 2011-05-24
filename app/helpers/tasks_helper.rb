@@ -61,6 +61,27 @@ module TasksHelper
       }.join(' ').html_safe
     end
   end
+  
+  def span_for_is_private(is_private)
+    if is_private
+      content_tag(:span, 'PRIVATE', :class => "is_private_state")
+    else
+      content_tag(:span, 'PUBLIC', :class => "is_public_state")
+    end
+  end
+  
+  def comment_task_is_private(comment)
+    if comment.is_private_change?
+      [].tap { |out|
+        out << span_for_is_private(comment.previous_is_private)
+        out << content_tag(:span, '&rarr;'.html_safe, :class => "arr is_private_arr")
+        out << span_for_is_private(comment.is_private)
+        out << comment.previous_is_private
+        out << ','
+        out << comment.is_private
+      }.join(' ').html_safe
+    end
+  end
 
   def task_status(task,status_type)
     status_for_column = status_type == :column ? "task_status_#{task.status_name}" : "task_counter"
